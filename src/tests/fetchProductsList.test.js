@@ -19,10 +19,11 @@ describe('Teste a função fetchProductsList', () => {
   });
 
   it('retorno da função fetchProductsList é uma estrutura de dados igual ao objeto computadorSearch', async () => {
-    await expect(fetchProductsList('computador')).toHaveReturnedWith(computadorSearch)
+    expect(await fetchProductsList('computador')).toEqual(computadorSearch)
+    // console.log(computadorSearch)
   });
 
   it('chamar a função fetchProductsList sem argumento, retorna um erro com a mensagem', async () => {
-    await expect(fetchProductsList()).rejects.toThrow('Termo de busca não informado')
-  });
+    await expect(fetchProductsList()).rejects.toEqual(new Error('Termo de busca não informado')
+)});
 });
