@@ -1,6 +1,6 @@
 import { searchCep } from './helpers/cepFunctions';
 import './style.css';
-import { fetchProductsList } from './helpers/fetchFunctions';
+import { fetchProduct, fetchProductsList } from './helpers/fetchFunctions';
 import { createProductElement } from './helpers/shopFunctions';
 import { saveCartID } from './helpers/cartFunctions';
 
@@ -44,5 +44,6 @@ sectionProducts.addEventListener('click', (event) => {
     const id = elementId.innerHTML;
 
     saveCartID(id);
+    fetchProduct(id);
   }
 });
