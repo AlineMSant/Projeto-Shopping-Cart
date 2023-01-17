@@ -22,8 +22,9 @@ describe('Teste a função fetchProduct', () => {
     expect(await fetchProduct('MLB1405519561')).toEqual(product);
   });
 
+    // matcher é toEqual pois não esta usando try catch de acordo com mentoria de projeto, 17/jan pois não conseguia fazer 100% de cobertura
   it('chamar a função fetchProduct sem argumento, retorna um erro com a mensagem', async () => {
-    await expect(fetchProduct()).rejects.toThrow(new Error('ID não informado')
-)});
+    await expect(fetchProduct()).rejects.toEqual(new Error('ID não informado')
+  )}); 
 });
 
