@@ -13,10 +13,6 @@ const loading = () => {
   sectionProducts.appendChild(newElement);
 };
 
-// const removeLoading = () => {
-//   sectionProducts.removeChild(loadingElement);
-// };
-
 const addProducts = async () => {
   loading();
   const arrayProducts = await fetchProductsList('computador');
