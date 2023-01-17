@@ -42,7 +42,7 @@ sectionProducts.addEventListener('click', (event) => {
     const parenteEventElement = event.target.parentNode;
     const elementId = parenteEventElement.firstChild;
     const id = elementId.innerHTML;
-    console.log(id);
+
+    saveCartID(id);
   }
-  // saveCartID();
 });
