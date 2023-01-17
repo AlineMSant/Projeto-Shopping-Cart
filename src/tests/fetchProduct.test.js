@@ -18,11 +18,11 @@ describe('Teste a função fetchProduct', () => {
     expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1405519561');
   });
 
-  it('o retorno da função fetchProduct é uma estrutura de dos igual ao objeto produto', () => {
+  it('o retorno da função fetchProduct é uma estrutura de dados igual ao objeto produto', () => {
     expect(await fetchProduct('MLB1405519561')).toEqual(product);
   });
-});
 
-it('...', () => {
-    
+  it('chamar a função fetchProduct sem argumento, retorna um erro com a mensagem', () => {
+    await expect(fetchProduct()).rejects.toThrow(new Error('ID não informado')
+)});
 });
