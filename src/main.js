@@ -37,13 +37,13 @@ const addProducts = async () => {
 addProducts();
 
 // link de pesquisa sobre parentNode https://horadecodar.com.br/2021/02/08/como-pegar-atributos-da-div-pai-atraves-do-elemento-filho/
-sectionProducts.addEventListener('click', (event) => {
+sectionProducts.addEventListener('click', async (event) => {
   if (event.target.className === 'product__add') {
     const parenteEventElement = event.target.parentNode;
     const elementId = parenteEventElement.firstChild;
     const id = elementId.innerHTML;
 
     saveCartID(id);
-    fetchProduct(id);
+    console.log(await fetchProduct(id));
   }
 });
