@@ -1,10 +1,14 @@
 export const fetchProduct = async (id) => {
-  const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
-  const data = await response.json();
-  console.log(data);
-};
+  if (!id) throw new Error('ID não informado');
 
-fetchProduct('MLB1341706310');
+  try {
+    const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return error.message;
+  }
+};
 
 export const fetchProductsList = async (query) => {
   if (!query) throw new Error('Termo de busca não informado');
