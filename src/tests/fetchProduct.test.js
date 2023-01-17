@@ -17,6 +17,10 @@ describe('Teste a função fetchProduct', () => {
     await fetchProduct('MLB1405519561');
     expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1405519561');
   });
+
+  it('o retorno da função fetchProductList é uma estrutura de dos igual ao objeto produto', () => {
+    expect(await fetchProduct('MLB1405519561')).toEqual(product);
+  });
 });
 
 it('...', () => {
