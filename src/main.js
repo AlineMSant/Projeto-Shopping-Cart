@@ -2,10 +2,12 @@ import { searchCep } from './helpers/cepFunctions';
 import './style.css';
 import { fetchProduct, fetchProductsList } from './helpers/fetchFunctions';
 import { createCartProductElement, createProductElement } from './helpers/shopFunctions';
-import { saveCartID } from './helpers/cartFunctions';
+import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 const sectionProducts = document.querySelector('.products');
+
+window.onload = console.log(getSavedCartIDs());
 
 const loading = () => {
   const newElement = document.createElement('p');
@@ -49,3 +51,5 @@ sectionProducts.addEventListener('click', async (event) => {
     elementOl.appendChild(createCartProductElement(elementObj));
   }
 });
+
+
