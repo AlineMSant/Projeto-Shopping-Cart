@@ -57,3 +57,6 @@ sectionProducts.addEventListener('click', async (event) => {
     elementOl.appendChild(createCartProductElement(elementObj));
   }
 });
+
+const arrayCartProduct = document.getElementsByClassName('cart__products')[0].children;
+console.log(arrayCartProduct);
