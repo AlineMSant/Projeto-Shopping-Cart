@@ -9,7 +9,8 @@ const sectionProducts = document.querySelector('.products');
 
 window.onload = getSavedCartIDs().map(async (element) => {
   const elementOl2 = document.querySelector('.cart__products');
-  elementOl2.appendChild(createCartProductElement(await fetchProduct(element)));
+  Promise.all(
+    elementOl2.appendChild(createCartProductElement(await fetchProduct(element))));
 });
 
 const loading = () => {
