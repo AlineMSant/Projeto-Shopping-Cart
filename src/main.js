@@ -7,8 +7,9 @@ import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 const sectionProducts = document.querySelector('.products');
 
-window.onload = getSavedCartIDs().map((element) => {
-  console.log(fetchProduct(element));
+window.onload = getSavedCartIDs().map(async (element) => {
+  const elementOl2 = document.querySelector('.cart__products');
+  elementOl2.appendChild(createCartProductElement(await fetchProduct(element)));
 });
 
 const loading = () => {
