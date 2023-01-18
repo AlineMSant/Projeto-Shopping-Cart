@@ -7,6 +7,7 @@ import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 const sectionProducts = document.querySelector('.products');
 
+// pesquisa utilizada para o requisito usando promise.all https://dev.to/jamesliudotcc/how-to-use-async-await-with-map-and-promise-all-1gb5
 window.onload = getSavedCartIDs().map(async (element) => {
   const elementOl2 = document.querySelector('.cart__products');
   Promise.all(
@@ -55,5 +56,3 @@ sectionProducts.addEventListener('click', async (event) => {
     elementOl.appendChild(createCartProductElement(elementObj));
   }
 });
-
-
