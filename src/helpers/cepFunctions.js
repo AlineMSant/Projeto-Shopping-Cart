@@ -1,4 +1,5 @@
 const cartAddress = document.getElementsByClassName('cart__address')[0];
+const inputAddress = document.getElementsByClassName('cep-input')[0];
 
 export const getAddress = async (cep) => {
   Promise.any([
@@ -18,7 +19,7 @@ ${objAddress.city} - ${objAddress.state}`;
 };
 
 export const searchCep = () => { // já tem addEvent na main
-  getAddress('09771211');
+  getAddress(inputAddress.value);
 };
 
 // console.log(searchCep());
