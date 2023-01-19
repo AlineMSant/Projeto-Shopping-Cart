@@ -7,21 +7,24 @@ import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 const sectionProducts = document.querySelector('.products');
 
-// pesquisa utilizada para o requisito usando promise.all https://dev.to/jamesliudotcc/how-to-use-async-await-with-map-and-promise-all-1gb5
+// pesquisa utilizada para o requisito usando promise.all https://dev.to/jamesliudotcc/how-to-use-async-await-with-map-and-promise-all-1gb5 e MENTORIA
 window.onload = () => {
+  // pega ids do carrinho e com o map procura retorna obj com fecthProduct e adiciona como elemento filho de Ol
   const result = getSavedCartIDs().map(async (id) => {
     const fetch = await fetchProduct(id);
     const elementOl2 = document.querySelector('.cart__products');
     elementOl2.appendChild(createCartProductElement(await fetchProduct(id)));
     return fetch;
   });
+  // a promise.all trata o retorno de result que é uma array, para retornar itens na ordem certa
   Promise.all(
     result,
-  ).then((response) => {
+  ).then((response) => { // .then pega o retorno de promise.all, que é uma array de objetos, para que possa ser utilizado para somar os valores e gerar o valor total.
     let total = 0;
     for (let i = 0; i < response.length; i += 1) {
       total += response[i].price;
     }
+    // inclui valor total na classe total-price para vizualizar no browser;
     const totalPriceElement = document.getElementsByClassName('total-price');
     totalPriceElement[0].innerHTML = total.toFixed(2);
   });
