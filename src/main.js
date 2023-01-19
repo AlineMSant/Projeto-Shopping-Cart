@@ -7,6 +7,7 @@ import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 const sectionProducts = document.querySelector('.products');
 const elementOl = document.querySelector('.cart__products');
+const totalPriceElement = document.getElementsByClassName('total-price');
 
 // pesquisa utilizada para o requisito usando promise.all https://dev.to/jamesliudotcc/how-to-use-async-await-with-map-and-promise-all-1gb5 e MENTORIA
 window.onload = () => {
@@ -25,7 +26,6 @@ window.onload = () => {
       total += response[i].price;
     }
     // inclui valor total na classe total-price para vizualizar no browser;
-    const totalPriceElement = document.getElementsByClassName('total-price');
     totalPriceElement[0].innerHTML = total.toFixed(2);
   });
 };
@@ -83,9 +83,14 @@ sectionProducts.addEventListener('click', async (event) => {
         total += result[i].price;
       }
       // inclui valor total na classe total-price para vizualizar no browser;
-      const totalPriceElement = document.getElementsByClassName('total-price');
       totalPriceElement[0].innerHTML = total.toFixed(2);
     });
+  }
+});
+
+elementOl.addEventListener('click', (event) => {
+  if (event.target.innerHTML === 'delete') {
+    console.log('oi');
   }
 });
 
