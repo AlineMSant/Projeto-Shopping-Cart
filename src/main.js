@@ -8,12 +8,24 @@ document.querySelector('.cep-button').addEventListener('click', searchCep);
 const sectionProducts = document.querySelector('.products');
 
 // pesquisa utilizada para o requisito usando promise.all https://dev.to/jamesliudotcc/how-to-use-async-await-with-map-and-promise-all-1gb5
-window.onload = getSavedCartIDs().map(async (element) => {
-  const elementOl2 = document.querySelector('.cart__products');
+window.onload = () => {
+  const result = getSavedCartIDs().map(async (id) => {
+    const fetch = await fetchProduct(id);
+    const elementOl2 = document.querySelector('.cart__products');
+    elementOl2.appendChild(createCartProductElement(await fetchProduct(id)));
+    return fetch;
+  });
   Promise.all(
-    elementOl2.appendChild(createCartProductElement(await fetchProduct(element))),
-  );
-});
+    result,
+  ).then((response) => {
+    let total = 0;
+    for (let i = 0; i < response.length; i += 1) {
+      total += response[i].price;
+    }
+    const totalPriceElement = document.getElementsByClassName('total-price');
+    totalPriceElement[0].innerHTML = total.toFixed(2);
+  });
+};
 
 const loading = () => {
   const newElement = document.createElement('p');
@@ -58,5 +70,5 @@ sectionProducts.addEventListener('click', async (event) => {
   }
 });
 
-const arrayCartProduct = document.getElementsByClassName('cart__products')[0].children;
-console.log(arrayCartProduct);
+// const arrayCartProduct = document.getElementsByClassName('cart__products')[0].children;
+// console.log(arrayCartProduct);
