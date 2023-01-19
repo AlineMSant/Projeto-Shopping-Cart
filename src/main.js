@@ -70,6 +70,23 @@ sectionProducts.addEventListener('click', async (event) => {
     const elementObj = await fetchProduct(id);
     const elementOl = document.querySelector('.cart__products');
     elementOl.appendChild(createCartProductElement(elementObj));
+
+    // soma valores no evento de click, mesma lógica de window.onload
+    const elementObjCart = getSavedCartIDs().map(async (element) => {
+      const fetchElementObjCart = await fetchProduct(element);
+      return fetchElementObjCart;
+    });
+    Promise.all(
+      elementObjCart,
+    ).then((result) => {
+      let total = 0;
+      for (let i = 0; i < result.length; i += 1) {
+        total += result[i].price;
+      }
+      // inclui valor total na classe total-price para vizualizar no browser;
+      const totalPriceElement = document.getElementsByClassName('total-price');
+      totalPriceElement[0].innerHTML = total.toFixed(2);
+    });
   }
 });
 
