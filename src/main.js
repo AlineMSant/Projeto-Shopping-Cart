@@ -9,16 +9,8 @@ const sectionProducts = document.querySelector('.products');
 const elementOl = document.querySelector('.cart__products');
 const totalPriceElement = document.getElementsByClassName('total-price');
 
-
 // soma total price, mesma lógica de window onload
 const totalPrice = () => {
-  // const elementObjCart = getSavedCartIDs().map(async (id) => {
-  //   const fetchElementObjCart = await fetchProduct(id);
-  //   // console.log(fetchElementObjCart);
-  //   return fetchElementObjCart;
-  // });
-  // console.log(elementObjCart);
-  // return elementObjCart;
   const elementObjCart = getSavedCartIDs().map(async (id) => {
     const fetchElementObjCart = await fetchProduct(id);
     return fetchElementObjCart;
