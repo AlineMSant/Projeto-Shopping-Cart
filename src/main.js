@@ -6,14 +6,14 @@ import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 const sectionProducts = document.querySelector('.products');
+const elementOl = document.querySelector('.cart__products');
 
 // pesquisa utilizada para o requisito usando promise.all https://dev.to/jamesliudotcc/how-to-use-async-await-with-map-and-promise-all-1gb5 e MENTORIA
 window.onload = () => {
   // pega ids do carrinho e com o map procura retorna obj com fecthProduct e adiciona como elemento filho de Ol
   const result = getSavedCartIDs().map(async (id) => {
     const fetch = await fetchProduct(id);
-    const elementOl2 = document.querySelector('.cart__products');
-    elementOl2.appendChild(createCartProductElement(await fetchProduct(id)));
+    elementOl.appendChild(createCartProductElement(await fetchProduct(id)));
     return fetch;
   });
   // a promise.all trata o retorno de result que é uma array, para retornar itens na ordem certa
@@ -68,7 +68,6 @@ sectionProducts.addEventListener('click', async (event) => {
 
     saveCartID(id);
     const elementObj = await fetchProduct(id);
-    const elementOl = document.querySelector('.cart__products');
     elementOl.appendChild(createCartProductElement(elementObj));
 
     // soma valores no evento de click, mesma lógica de window.onload
