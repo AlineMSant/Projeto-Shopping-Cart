@@ -27,6 +27,7 @@ const totalPrice = () => {
   });
 };
 
+// faz com que ao recarregar a págica os itens do carrigo sejam mantidos e gera total de preço por esses itens;
 // pesquisa utilizada para o requisito usando promise.all https://dev.to/jamesliudotcc/how-to-use-async-await-with-map-and-promise-all-1gb5 e MENTORIA
 window.onload = () => {
   // pega ids do carrinho e com o map procura retorna obj com fecthProduct e adiciona como elemento filho de Ol
@@ -48,6 +49,7 @@ window.onload = () => {
   });
 };
 
+// cria elemento de carregamento..
 const loading = () => {
   const newElement = document.createElement('p');
   newElement.innerHTML = 'carregando...';
@@ -55,6 +57,7 @@ const loading = () => {
   sectionProducts.appendChild(newElement);
 };
 
+// gera erro de API caso algo de errado, função utilizada em addProducts para catch
 const errorAPI = () => {
   const newElementError = document.createElement('p');
   newElementError.innerHTML = 'Algum erro ocorreu, recarregue a página e tente novamente';
@@ -62,6 +65,7 @@ const errorAPI = () => {
   sectionProducts.appendChild(newElementError);
 };
 
+// enquanto não retorna API e adiciona elementos na pagina de compras, utiliza função loading e errorAPI
 const addProducts = async () => {
   try {
     loading();
@@ -77,6 +81,7 @@ const addProducts = async () => {
 
 addProducts();
 
+// cria elementos no carrinho e faz toma total do valor com evento de click em adicionar
 // link de pesquisa sobre parentNode https://horadecodar.com.br/2021/02/08/como-pegar-atributos-da-div-pai-atraves-do-elemento-filho/
 sectionProducts.addEventListener('click', async (event) => {
   if (event.target.className === 'product__add') {
@@ -91,6 +96,7 @@ sectionProducts.addEventListener('click', async (event) => {
   }
 });
 
+// remove valor do evento no preço total do carrinho
 elementOl.addEventListener('click', (event) => {
   if (event.target.innerHTML === 'delete') {
     totalPrice();
