@@ -9,6 +9,24 @@ const sectionProducts = document.querySelector('.products');
 const elementOl = document.querySelector('.cart__products');
 const totalPriceElement = document.getElementsByClassName('total-price');
 
+// soma total price, mesma lógica de window onload
+const totalPrice = () => {
+  const elementObjCart = getSavedCartIDs().map(async (element) => {
+    const fetchElementObjCart = await fetchProduct(element);
+    return fetchElementObjCart;
+  });
+  Promise.all(
+    elementObjCart,
+  ).then((result) => {
+    let total = 0;
+    for (let i = 0; i < result.length; i += 1) {
+      total += result[i].price;
+    }
+    // inclui valor total na classe total-price para vizualizar no browser;
+    totalPriceElement[0].innerHTML = total.toFixed(2);
+  });
+};
+
 // pesquisa utilizada para o requisito usando promise.all https://dev.to/jamesliudotcc/how-to-use-async-await-with-map-and-promise-all-1gb5 e MENTORIA
 window.onload = () => {
   // pega ids do carrinho e com o map procura retorna obj com fecthProduct e adiciona como elemento filho de Ol
@@ -69,28 +87,13 @@ sectionProducts.addEventListener('click', async (event) => {
     saveCartID(id);
     const elementObj = await fetchProduct(id);
     elementOl.appendChild(createCartProductElement(elementObj));
-
-    // soma valores no evento de click, mesma lógica de window.onload
-    const elementObjCart = getSavedCartIDs().map(async (element) => {
-      const fetchElementObjCart = await fetchProduct(element);
-      return fetchElementObjCart;
-    });
-    Promise.all(
-      elementObjCart,
-    ).then((result) => {
-      let total = 0;
-      for (let i = 0; i < result.length; i += 1) {
-        total += result[i].price;
-      }
-      // inclui valor total na classe total-price para vizualizar no browser;
-      totalPriceElement[0].innerHTML = total.toFixed(2);
-    });
+    totalPrice();
   }
 });
 
 elementOl.addEventListener('click', (event) => {
   if (event.target.innerHTML === 'delete') {
-    console.log('oi');
+    totalPrice();
   }
 });
 
