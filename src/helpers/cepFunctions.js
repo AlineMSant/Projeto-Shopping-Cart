@@ -12,7 +12,7 @@ export const getAddress = async (cep) => {
       await fetch(`https://brasilapi.com.br/api/cep/v2/${cep}`),
     ]).then(async (response) => {
       const objAddress = await response.json();
-
+      console.log(objAddress);
       if (!objAddress.address) {
         cartAddress.innerHTML = `${objAddress.street} - ${objAddress.neighborhood} - \
   ${objAddress.city} - ${objAddress.state}`;
