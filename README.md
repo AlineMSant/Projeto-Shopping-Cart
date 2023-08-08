@@ -21,7 +21,7 @@ npm start
  - JavaScript
  - Consumo de API
 
-## Habilidades desenvolvidas:
+## Arquivos e Pastas Desenvolvidos
 Os seguintes arquivos e pastas foram desenvolvidos por mim:
 
 - helpers/cepFunctions.js
