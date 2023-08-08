@@ -21,6 +21,23 @@ npm start
  - JavaScript
  - Consumo de API
 
+## Habilidades desenvolvidas:
+Os seguintes arquivos e pastas foram desenvolvidos por mim:
+
+- helpers/cepFunctions.js
+- helpers/fetchFunctions.js
+- src/tests
+- src/tests/mocks
+- main.js
+
+Os seguintes arquivos e pastas foram desenvolvidos pela Trybe:
+
+- helpers/cartFunctions.js
+- helpers/shopFunctions.js
+- cypress
+- index.html
+- style.css
+
 ## Formas de contato:
 Email: alinems4120@gmail.com <br>
 Linkedin: <a href="https://www.linkedin.com/in/alinemourasantos-dev/" target="_blank">Clique aqui</a>
